@@ -21,10 +21,17 @@
 @media screen and(max-width: 480px)
 {
     .card{
+        display: flex;
+        flex-direction: column;
         width: 160px;
         height: 250px;
+        background-color: #fff;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 0.7rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        transition: all 0.3s ease;
     }
-
 }
 
 
