@@ -11,7 +11,7 @@
 
 
 
-@media screen and(max-width: 640px)
+@media screen and(max-width: 1125px)
 {
     .card{
         display: flex;
