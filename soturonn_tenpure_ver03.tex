@@ -1,0 +1,210 @@
+\documentclass[uplatex]{jsbook}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage[dvipdfmx, bookmarkstype=toc, colorlinks=true, pdfborder={0 0 0}, bookmarks=true, bookmarksnumbered=true]{hyperref}%色ついている所はハイパーリンクになっている. 章目次や図目次, 式番号など. 
+\usepackage{pxjahyper}
+\usepackage{fancyhdr}
+\usepackage{here}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{empheq}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{ulem}
+\usepackage{lscape}
+
+%\mathtoolsset{showonlyrefs=true}
+
+\pagestyle{fancy}
+
+ \rfoot{\LaTeX}
+
+ \title{
+    \fontsize{25pt}{50pt}\selectfont
+    甲南大学\,理工学部\,物理学科\,宇宙理論研究室\\
+    \fontsize{25pt}{50pt}\selectfont
+    2024年度\,学士論文\\
+    \fontsize{25pt}{100pt}\selectfont
+    タイトル\,Foge\,Foge
+    }
+ \author{名前\thanks{Dechapterment of Physics, Faculty of Science and Engineering, Konan University}}
+ \date{}%\date{}のみだと日付なし、%\date{}の場合は今日の日付、任意の日付を入れたい時は\date{}の中に任意の日付を書く。
+
+
+ %-----------------------------------------------
+ %|                                             |
+ %|   設定は理解しない, 読まない(時間がないので)   |
+ %|                                             |
+ %-----------------------------------------------
+
+
+% ここから設定
+ 
+ % 設定1 https://oku.edu.mie-u.ac.jp/~okumura/jsclasses/ "jsbookの余白が広すぎます"から使用
+ \setlength{\textwidth}{\fullwidth}
+ \setlength{\evensidemargin}{\oddsidemargin}
+ % 設定1終わり
+
+ % 設定2 https://oku.edu.mie-u.ac.jp/~okumura/jsclasses/"目次や章の最初のページも他のページと同じデザインにするには"から使用
+ \makeatletter
+ \renewcommand{\chapter}{%
+   \if@openright\cleardoublepage\else\clearpage\fi
+   \global\@topnum\z@
+   \secdef\@chapter\@schapter}
+ \makeatother
+ % 設定2終わり
+
+ % 設定3 https://oku.edu.mie-u.ac.jp/~okumura/jsclasses/"目次や章の最初のページも他のページと同じデザインにするには"から使用
+ \makeatletter
+ \def\ps@plainfoot{%
+   \let\@mkboth\@gobbletwo
+   \let\@oddhead\@empty
+   \def\@oddfoot{\normalfont\hfil-- \thepage\ --\hfil}%
+   \let\@evenhead\@empty
+   \let\@evenfoot\@oddfoot}
+ \let\ps@plain\ps@plainfoot
+ \makeatother
+ \pagestyle{plain}
+ % 設定3終わり
+
+ % 設定4 https://oku.edu.mie-u.ac.jp/~okumura/jsclasses/"目次や章の最初のページも他のページと同じデザインにするには"から使用
+ \setlength\footskip{2\baselineskip}
+ \addtolength{\textheight}{-2\baselineskip}
+ % 設定4終わり
+
+ % 設定5 http://xyoshiki.web.fc2.com/tex/etc010.html
+ \makeatletter
+ \renewcommand{\theequation}{\arabic{chapter}-\arabic{section}-\arabic{equation}}
+ \@addtoreset{equation}{section}
+ \makeatother
+ % 設定5終わり
+
+ % 設定6
+ \renewcommand{\appendixname}{Appendix }%付録をAppendixに表示を変更
+ % 設定6終わり
+
+ % 設定7 https://hnsn1202.hateblo.jp/entry/2013/02/06/170617
+ %\usepackage{endnotes}
+ %\let\footnote=\endnote
+ % 設定7終わり
+
+ %注釈を章の最後にまとめて出力する場合は, 以下の3行を表示してほしい所に貼る. 
+ %\addcontentsline{toc}{section}{\notesname}
+ %\theendnotes
+ %\setcounter{endnote}{0}
+
+% 設定はここまで
+
+\begin{document}
+
+ \newcommand{\Eqref}[1]{(\ref{#1})~式}%\Eqref{label名}と入力すると(labelに対応する式番号)式と表示される. 以下2つも同じ. 
+ \newcommand{\Tabref}[1]{表~\ref{#1}}
+ \newcommand{\Figref}[1]{図~\ref{#1}}
+ \newcommand{\Secref}[1]{\ref{#1}~節}
+
+ \maketitle
+ \newpage
+ 
+ \begin{abstract}
+    ... 文書の概要 ...
+ \end{abstract} 
+ \newpage
+
+ \setcounter{tocdepth}{3}%目次の設定。章節まで目次に表示の場合->1, 節まで表示の場合->2, 小節まで表示の場合->3
+    
+ \tableofcontents %目次
+ \newpage
+
+ \listoffigures %図目次
+ \newpage
+
+ \listoftables %表目次
+ \newpage
+
+
+ \chapter{\LaTeX の書き方}
+
+ ・数式の書き方：式番号を表示させたくない場合はalignをalign*に変更する。
+
+ \begin{align}
+  y=ax(コメント：ここに書く)
+ \end{align}
+
+
+ ・分数の書き方：fracの1つ目の括弧は分子、2つ目の括弧は分母
+
+ \begin{align}
+  y=\frac{x}{b}
+ \end{align}
+
+
+ ・積分の書き方：dxのみたいなのはdd\{\}中にxだけ書く
+
+ \begin{align}
+  \int_{ここから}^{ここまで積分}関数\dd{x}
+ \end{align}
+ 
+
+ ・微分の書き方：\url{https://qiita.com/kawabatayuuya/items/ccfb6f9766f5719b73ca}と\url{https://event.phys.s.u-tokyo.ac.jp/physlab2022/posts/19/}を参考にしてください。\\
+
+
+ ・連立方程式の書き方：イコールを揃えたい時は"="の前に\& を付ける。また最後の行以外の行の最後にバックスラッシュを付ける。
+
+ \begin{empheq}[left=\empheqlbrace]{align}
+    y&=ax\\
+    f(x)&=ax+b
+ \end{empheq}
+
+
+ ・特殊文字(ギリシャ文字など)：\url{http://www.ic.daito.ac.jp/~mizutani/tex/special_characters.html}\\
+
+
+ ・添え字の書き方
+
+ \begin{align}
+  \Gamma_{下付き添え字}^{上つき添え字または累乗}
+ \end{align}
+
+
+ ・空白の生成：\$ で囲む。
+
+ この$\quad$様にし$\qquad$て書く
+
+
+ \chapter{序論}\label{chapter 序}
+
+
+
+ \chapter{原理}\label{chapter 原理}
+
+
+
+ \chapter{解析と結果}\label{chapter 解析と結果}
+
+
+
+ \section{議論}\label{section 議論}
+
+
+
+ \chapter*{謝辞}
+ \addcontentsline{toc}{chapter}{謝辞}%https://blog.ashija.net/2017/10/24/post-2774/
+ 先生ありがとうございました. みたいな文章を書く. 
+
+
+ \begin{thebibliography}{99}%https://mathlandscape.com/latex-cite/
+   \bibitem{高エネルギー物理学素過程}George B. Rybicki \& Alan P. Lightman, Radiative Processes in Astrophysics, 1985
+ \end{thebibliography}
+
+
+ \appendix
+ \chapter{Foge}
+ \section{Foge\,Foge}\label{appendix Foge}
+ 
+
+\end{document}
