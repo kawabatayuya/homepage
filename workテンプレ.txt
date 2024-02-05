@@ -1,0 +1,20 @@
+            <div class="post-item">
+
+                <h3>タイトル</h3>
+                <div class="info">
+                    <h5>日付</h5>
+                    <h5>|</h5>
+                    <h5>LaTeX? C言語?など</h5>
+                </div>
+                <p>
+                    文章
+                </p>
+
+                <div class="buttons">
+                    <!--<i class='bx bx-share'></i>-->
+                    <!--<i class='bx bx-link-alt'></i>-->
+                    <!--<i class='bx bx-copy'></i>-->
+                    <!--<i class='bx bx-bookmark-plus'></i>-->
+                    <a href="URLを入れる"><button>Read More</button></a>
+                </div>
+            </div>
